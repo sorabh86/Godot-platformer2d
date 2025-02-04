@@ -282,8 +282,7 @@ sources/0 = SubResource("TileSetAtlasSource_eo8on")
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2y8e7"]
 size = Vector2(62, 71)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_cclmj"]
-size = Vector2(90, 86)
+[sub_resource type="CircleShape2D" id="CircleShape2D_ljuxd"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vmpa6"]
 size = Vector2(74, 97)
@@ -311,11 +310,9 @@ position = Vector2(1, 14.5)
 shape = SubResource("RectangleShape2D_2y8e7")
 
 [node name="Area2D" type="Area2D" parent="Enemy"]
-collision_layer = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy/Area2D"]
-position = Vector2(0, 8)
-shape = SubResource("RectangleShape2D_cclmj")
+shape = SubResource("CircleShape2D_ljuxd")
 
 [node name="Player" type="CharacterBody2D" parent="."]
 position = Vector2(40, 492)
@@ -336,7 +333,6 @@ drag_vertical_enabled = true
 [node name="Coin" type="Area2D" parent="."]
 position = Vector2(259, 353)
 scale = Vector2(0.509542, 0.509542)
-collision_layer = 0
 script = ExtResource("6_iqtmu")
 
 [node name="Sprite2D" type="Sprite2D" parent="Coin"]
@@ -345,6 +341,4 @@ texture = ExtResource("7_lkav3")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Coin"]
 shape = SubResource("CircleShape2D_xu03o")
 
-[connection signal="body_entered" from="Enemy/Area2D" to="Enemy" method="_on_area_2d_body_entered"]
-[connection signal="body_entered" from="Coin" to="Coin" method="_on_Coin_body_entered"]
-[connection signal="coin_collected" from="Coin" to="Player" method="_on_coin_coin_collected"]
+[connection signal="area_entered" from="Enemy/Area2D" to="Player" method="_on_area_2d_area_entered"]

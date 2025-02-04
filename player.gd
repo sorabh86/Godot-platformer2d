@@ -5,6 +5,8 @@ extends CharacterBody2D
 @export var gravity = 800
 @export var jump_cutoff = 0.5  # Allows variable jump height
 
+var score = 0
+
 func _physics_process(delta):
 	# Apply gravity
 	if not is_on_floor():
@@ -22,5 +24,11 @@ func _physics_process(delta):
 		velocity.y = jump_force
 	elif Input.is_action_just_released("ui_up") and velocity.y < 0:
 		velocity.y *= jump_cutoff
+		
+	#print("player script runs")
 
 	move_and_slide()
+
+func _on_coin_coin_collected() -> void:
+	score += 1  # Increase score by 1
+	print("Score: ", score)  # You can replace this with a UI label later
