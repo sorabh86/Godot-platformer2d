@@ -1,5 +1,6 @@
 extends CharacterBody2D
 
+@onready var score_label = $"../CanvasLayer/HUD/ScoreLabel"
 @export var speed = 200
 @export var jump_force = -400
 @export var gravity = 800
@@ -32,3 +33,4 @@ func _physics_process(delta):
 func _on_coin_coin_collected() -> void:
 	score += 1  # Increase score by 1
 	print("Score: ", score)  # You can replace this with a UI label later
+	score_label.text = "Score: " + str(score) 

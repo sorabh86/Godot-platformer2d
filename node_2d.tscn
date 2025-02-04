@@ -300,7 +300,7 @@ tile_map_data = PackedByteArray("AABKACQAAAACAAIAAABJACQAAAADAAEAAABIACQAAAADAAE
 tile_set = SubResource("TileSet_g634t")
 
 [node name="Enemy" type="CharacterBody2D" parent="."]
-position = Vector2(910, 411)
+position = Vector2(910, 421)
 script = ExtResource("2_l5c0v")
 
 [node name="Sprite2D" type="Sprite2D" parent="Enemy"]
@@ -344,6 +344,20 @@ texture = ExtResource("7_lkav3")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Coin"]
 shape = SubResource("CircleShape2D_xu03o")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="HUD" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 0
+
+[node name="ScoreLabel" type="Label" parent="CanvasLayer/HUD"]
+layout_mode = 1
+offset_left = 10.0
+offset_top = 10.0
+offset_right = 71.0
+offset_bottom = 33.0
+text = "Score: 0"
 
 [connection signal="body_entered" from="Enemy/Area2D" to="Enemy" method="_on_area_2d_body_entered"]
 [connection signal="body_entered" from="Coin" to="Coin" method="_on_Coin_body_entered"]
