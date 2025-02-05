@@ -20,21 +20,27 @@ func _input(event):
 
 			dragging = true
 		else:
+			var touch_position = event.position
+			
+			if not Input.is_action_just_pressed("jump"):
+				player.move_left = false
+				player.move_right = false
+			
 			dragging = false
 			$JoystickKnob.position = Vector2()
+			
 
 	if event is InputEventScreenDrag and dragging:
+		print("inputdrag ", dragging)
 		offset = event.position - start_pos
 		
 		if offset.length() > max_distance:
 			offset = offset.normalized() * max_distance  # Limit movement
 			
 		$JoystickKnob.position = offset
-	
-	#if(dragging):
+
 		# Move player
 		if player:
-			print('offset: ', offset.x, " ")
 			if offset.x < -10:
 				player.move_left = true
 				player.move_right = false
