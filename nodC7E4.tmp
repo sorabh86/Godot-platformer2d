@@ -1,7 +1,6 @@
-[gd_scene load_steps=19 format=4 uid="uid://nsgal0s4k6co"]
+[gd_scene load_steps=17 format=4 uid="uid://nsgal0s4k6co"]
 
 [ext_resource type="Texture2D" uid="uid://br43jf76lq3x" path="res://assets/touchbase.png" id="1_5kkq7"]
-[ext_resource type="Script" path="res://node_2d.gd" id="1_hgcr1"]
 [ext_resource type="Texture2D" uid="uid://bvymxvuepdakl" path="res://assets/hero.png" id="1_jb0m4"]
 [ext_resource type="Script" path="res://joystick.gd" id="1_n4wtt"]
 [ext_resource type="Script" path="res://player.gd" id="1_qa25k"]
@@ -9,7 +8,6 @@
 [ext_resource type="Script" path="res://enemy.gd" id="2_l5c0v"]
 [ext_resource type="Texture2D" uid="uid://codec0f1qb8ib" path="res://assets/ground.jpg" id="3_tyt8i"]
 [ext_resource type="Texture2D" uid="uid://4sc6vahv3nsv" path="res://assets/enemy.jpg" id="4_qlfkm"]
-[ext_resource type="Texture2D" uid="uid://dxngamswx04fd" path="res://assets/jump.png" id="5_d44be"]
 [ext_resource type="Script" path="res://coin.gd" id="6_iqtmu"]
 [ext_resource type="Texture2D" uid="uid://b6wsqt6ki4cew" path="res://assets/coin.jpg" id="7_lkav3"]
 
@@ -297,35 +295,27 @@ size = Vector2(74, 97)
 radius = 51.064
 
 [node name="Node2D" type="Node2D"]
-script = ExtResource("1_hgcr1")
 
-[node name="CanvasLayer2" type="CanvasLayer" parent="."]
+[node name="CanvasGroup" type="CanvasGroup" parent="."]
 
-[node name="Joystick" type="Control" parent="CanvasLayer2" node_paths=PackedStringArray("player")]
+[node name="Joystick" type="Control" parent="CanvasGroup"]
 layout_mode = 3
 anchors_preset = 0
-offset_left = 155.0
-offset_top = 485.0
-offset_right = 195.0
-offset_bottom = 525.0
+offset_right = 40.0
+offset_bottom = 40.0
 script = ExtResource("1_n4wtt")
-player = NodePath("../../Player")
 
-[node name="JoystickBase" type="TextureRect" parent="CanvasLayer2/Joystick"]
+[node name="JoystickBase" type="TextureRect" parent="CanvasGroup/Joystick"]
 layout_mode = 0
 offset_right = 99.0
 offset_bottom = 99.0
 texture = ExtResource("1_5kkq7")
 
-[node name="JoystickKnob" type="TextureRect" parent="CanvasLayer2/Joystick"]
+[node name="JoystickNob" type="TextureRect" parent="CanvasGroup/Joystick"]
 layout_mode = 0
 offset_right = 99.0
 offset_bottom = 99.0
 texture = ExtResource("2_3rpoc")
-
-[node name="TouchScreenButton" type="TouchScreenButton" parent="CanvasLayer2"]
-position = Vector2(954, 489)
-texture_normal = ExtResource("5_d44be")
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
 use_parent_material = true
@@ -396,7 +386,6 @@ offset_right = 81.0
 offset_bottom = 43.0
 text = "Score: 0"
 
-[connection signal="pressed" from="CanvasLayer2/TouchScreenButton" to="Player" method="_on_JumpButton_pressed"]
 [connection signal="body_entered" from="Enemy/Area2D" to="Enemy" method="_on_area_2d_body_entered"]
 [connection signal="body_entered" from="Coin" to="Coin" method="_on_Coin_body_entered"]
 [connection signal="coin_collected" from="Coin" to="Player" method="_on_coin_coin_collected"]

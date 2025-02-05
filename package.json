@@ -1,0 +1,12 @@
+{
+  "name": "platform2d",
+  "version": "1.0.0",
+  "description": "This is very simple 2d platformer game in godot for revision purposes",
+  "main": "index.js",
+  "scripts": {
+	"deploy": "gh-pages -d ./dist"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
