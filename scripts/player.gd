@@ -12,6 +12,10 @@ var move_left = false
 var move_right = false
 var jump_pressed = false
 
+func _ready():
+	for coin in get_tree().get_nodes_in_group("coins"):
+		coin.coin_collected.connect(_on_coin_collected)
+
 func _physics_process(delta):
 	var direction = 0
 	
@@ -26,7 +30,10 @@ func _physics_process(delta):
 		direction = 1
 
 	velocity.x = direction * speed
-
+	
+	if direction != 0:
+		$Sprite2D.scale.x = direction
+	
 	# Jump with touch or keyboard
 	if (Input.is_action_just_pressed("jump") or jump_pressed) and is_on_floor():
 		velocity.y = jump_force
@@ -37,7 +44,7 @@ func _physics_process(delta):
 func _on_JumpButton_pressed():
 	jump_pressed = true
 
-func _on_coin_coin_collected() -> void:
+func _on_coin_collected() -> void:
 	score += 1  # Increase score by 1
 	print("Score: ", score)  # You can replace this with a UI label later
 	score_label.text = "Score: " + str(score) 

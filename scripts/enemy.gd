@@ -2,7 +2,7 @@ extends CharacterBody2D
 
 @export var speed = 100  # Movement speed
 @export var move_distance = 100  # How far it moves before turning
-var direction = 1  # 1 = right, -1 = left
+var direction = -1  # 1 = right, -1 = left
 var start_position
 
 func _ready():
